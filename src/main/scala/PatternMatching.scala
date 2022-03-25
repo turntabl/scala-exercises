@@ -51,7 +51,7 @@ object PatternMatching {
   case class UnaryOperation(operator: String, argument: Expression) extends Expression
   case class BinaryOperation(operator: String, left: Expression, right: Expression) extends Expression
 
-  // Write a function that uses pattern matching to simplify double negation, adding and multiplying by 1
+  // Write a function that uses pattern matching to simplify double negation, adding 0 and multiplying by 1
   // e.g. UnOp("-", UnOp("-", e) == e (think --1 == 1)
 
   // Think carefully about what is actually happening here, this a powerful example of pattern matching
