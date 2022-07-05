@@ -16,21 +16,21 @@ object StringFunctions {
     * Capitalise and reverse the supplied string.
     */
   def capitaliseAndReverse(str: String) = {
-    ???
+    str.toUpperCase.reverse
   }
 
   /**
     * Return the string with append after the string
     */
   def appendString(str: String, append: String) = {
-    ???
+    str + append
   }
 
   /**
     * Return the string with prepend in front of it
     */
   def prependString(str: String, prepend: String) = {
-    ???
+    prepend + str
   }
 
   /**
@@ -38,14 +38,14 @@ object StringFunctions {
     * Hint: Watch out for the case where there are capital letters.
     */
   def convertToAlphabetical(str:String) = {
-    ???
+    str.toLowerCase.sorted
   }
 
   /**
     * Returns the number of times a particular character occurs in the given string
     */
   def countOfOccurrences(str: String, char: Char) = {
-    ???
+    str.toLowerCase.count(c => c == char)
   }
 
   /**
@@ -54,6 +54,7 @@ object StringFunctions {
     * using map and indexOf from the String library and countOfOccurrences above
     */
   def mostCommonCharacter(str:String) = {
-    ???
+    val counts = str.map(c => countOfOccurrences(str, c))
+    str.charAt(counts.indexOf(counts.max))
   }
 }
