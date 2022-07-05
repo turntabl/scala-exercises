@@ -79,7 +79,14 @@ class StringSuite extends FunSuite {
     assertEquals(StringFunctions.convertToAlphabetical("abCBAfF"), "aAbBCfF")
   }
 
-test(
+  test(
+    "When converting a string to alphabetical order on a string of length > 1 that is not in order and contains capitals that are NOT necessarily occurring after their lower case equivalent, " +
+      "the result should _still_ be the string in order with capitals after lower case letters"
+  ) {
+    assertEquals(StringFunctions.convertToAlphabetical("AabCBFf"), "AabBCFf")
+  }
+
+  test(
     "The string 'exercise' should return 'e' as the most common character"
   ) {
     assertEquals(StringFunctions.mostCommonCharacter("exercise"),'e')
