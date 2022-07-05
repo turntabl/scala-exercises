@@ -83,13 +83,13 @@ class PatternMatchingSuite extends FunSuite with ScalaCheckSuite {
     }
   }
 
-  test("General size returns the correct result for lists") {
+  test("General size returns the correct result for maps") {
     forAll { (m: Map[Int, Int]) =>
       PatternMatching.generalSize(m) == m.size
     }
   }
 
-  test("General size returns the correct result for lists") {
+  test("General size returns the correct result for strings") {
     forAll { (s: String) =>
       PatternMatching.generalSize(s) == s.length
     }

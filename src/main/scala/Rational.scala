@@ -37,7 +37,7 @@ class Rational(n: Int, d:Int) extends Ordered[Rational]{
     * As you're inside the class you can use the simpified numer and denom from the fields
     */
   def + (that: Rational): Rational = {
-    ???
+    new Rational((numer * that.denom) + (denom * that.numer), (denom * that.denom))
   }
 
   /**
@@ -45,7 +45,7 @@ class Rational(n: Int, d:Int) extends Ordered[Rational]{
     * user to be able to do Rational(1,2) + 1 than Rational(1,2) + Rational(1,1)
     */
   def + (i: Int): Rational = {
-    ???
+    new Rational(numer + (denom * i), denom)
   }
 
   /**
@@ -55,14 +55,14 @@ class Rational(n: Int, d:Int) extends Ordered[Rational]{
     * Ananologous to + method
     */
   def - (that: Rational): Rational = {
-    ???
+    new Rational((numer * that.denom) - (denom * that.numer), (denom * that.denom))
   }
 
   /**
     * Analogous to the + method
     */
   def - (i: Int): Rational = {
-    ???
+    new Rational(numer - (denom * i), denom)
   }
 
   /**
@@ -72,14 +72,14 @@ class Rational(n: Int, d:Int) extends Ordered[Rational]{
     * Analogous to + method
     */
   def * (that: Rational): Rational = {
-    ???
+    new Rational(numer * that.numer, denom * that.denom)
   }
 
   /**
     * Analogous to the + method
     */
   def * (i: Int): Rational = {
-    ???
+    new Rational(numer * i, denom)
   }
 
   /**
@@ -89,14 +89,14 @@ class Rational(n: Int, d:Int) extends Ordered[Rational]{
     * Analogous to + method
     */
   def / (that: Rational): Rational = {
-    ???
+    new Rational(numer * that.denom, denom * that.numer)
   }
 
   /**
     * Analogous to the + method
     */
   def / (i: Int): Rational = {
-    ???
+    new Rational(numer, denom * i)
   }
 
   /**
@@ -107,8 +107,9 @@ class Rational(n: Int, d:Int) extends Ordered[Rational]{
     *  Hint: Use recursion
    */
 
+  @tailrec
   private def gcd(a: Int, b: Int): Int = {
-    ???
+    if (b == 0) a else gcd(b, a % b)
   }
 
   /**
@@ -117,14 +118,17 @@ class Rational(n: Int, d:Int) extends Ordered[Rational]{
     *
     * Use string interpolation to put the parameters in to the string
     */
-  override def toString: String = ???
+  override def toString: String = s"$numer/$denom"
 
   /**
     * We want to be able to compare two rational numbers. Overriding this method
     * along with implementing ordered interface allows us to use <, >, <=, >=, ==
     */
   override def compare(that:Rational): Int = {
-    ???
+    if (denom == that.denom)
+      numer.compare(that.numer)
+    else
+      (numer * that.denom).compare(denom * that.numer)
   }
 
   /**
@@ -136,7 +140,10 @@ class Rational(n: Int, d:Int) extends Ordered[Rational]{
     * show it can be done this way
     */
   override def equals(that: Any): Boolean = {
-    ???
+    that match {
+      case t : Rational => t.compare(this) == 0
+      case _ => false
+    }
   }
 }
 
@@ -152,6 +159,20 @@ class Rational(n: Int, d:Int) extends Ordered[Rational]{
 object IntUtils {
   implicit class IntExtensions(i: Int) {
     /** Use that adding a rational and an int is associative, i.e i + r == r + i */
-    ???
+    def + (that: Rational): Rational = {
+      that + i
+    }
+
+    def - (that: Rational): Rational = {
+      new Rational(i) - that
+    }
+
+    def * (that: Rational): Rational = {
+      that * i
+    }
+
+    def / (that: Rational): Rational = {
+      new Rational(i) / that
+    }
   }
 }

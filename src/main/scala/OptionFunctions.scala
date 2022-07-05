@@ -16,17 +16,17 @@ object OptionFunctions {
 
   /** Return everyone from the list passed in who has a forename */
   def getPeopleWithForenames(listOfPeople: List[Person]): List[Person] = {
-    ???
+    listOfPeople.filter(_.forename.isDefined)
   }
 
   /** Return everyone from the list but default their forename to unknown if it doesn't exist */
   def getPeopleWithDefaultForename(listOfPeople: List[Person]): List[Person] = {
-    ???
+    listOfPeople.map(p => Person(Some(p.forename.getOrElse("Unknown")), p.surname, p.dateOfBirth, p.address))
   }
 
   /** Get the first line and postcode of all the addresses from the list of People*/
   def getAddresses(listOfPeople: List[Person]): List[(String, String)] = {
-    ???
+    listOfPeople.map(p => p.address).flatten.map(a => (a.line1, a.postcode))
   }
 
 }

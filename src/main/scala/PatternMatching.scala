@@ -12,12 +12,22 @@ object PatternMatching {
      // Hint, pattern matching allows for guards
    */
   def numberInRange(number: Int):String = {
-    ???
+    number match {
+      case n if n < 0 => n.toString + "<0"
+      case n if 0 to 18 contains n => "0<=" + n.toString + "<=18"
+      case n if 19 to 35 contains n => "19<=" + n.toString + "<=35"
+      case n if 36 to 65 contains n => "36<=" + n.toString + "<=65"
+      case n => n.toString + ">65"
+    }
   }
 
   /* Take a List and if it is empty return 0, if it contains 3 elements return the third, otherwise return the first */
   def thirdOrFirst(l: List[Int]): Int = {
-    ???
+    l match {
+      case Nil => 0
+      case List(_, _, z) => z
+      case head::tail => head
+    }
   }
 
   /* If List starts with 0, 1 then return "Starts with 0,1"
@@ -25,13 +35,23 @@ object PatternMatching {
      If list starts with anything else return "Doesn't start with 0,1 or 1,2
    */
   def startsWithCheck(l:List[Int]): String = {
-    ???
+    l match {
+      case 0::1::tail => "Starts with 0,1"
+      case 1::2::tail => "Starts with 1,2"
+      case _ => "Doesn't start with 0,1 or 1,2"
+    }
   }
 
   /* Write a function that does the following:
   *  Gives the length of a list, Gives the size of a map, list or vector or gives -1 otherwise */
   def generalSize(x: Any):Int = {
-    ???
+    x match {
+      case l : List[Any] => l.size
+      case m : Map[Any, Any] => m.size
+      case v : Vector[Any] => v.size
+      case s : String => s.size
+      case _ => -1
+    }
   }
 
   /*
@@ -60,6 +80,11 @@ object PatternMatching {
 
   // Hint - You only need one line for each case and a default case
   def simplify(expr: Expression): Expression = {
-    ???
+    expr match {
+      case UnaryOperation("-", UnaryOperation("-", x)) => x
+      case BinaryOperation("+", x, Number(0)) => x
+      case BinaryOperation("*", x, Number(1)) => x
+      case x => x
+    }
   }
  }

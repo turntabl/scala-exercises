@@ -90,9 +90,20 @@ class RationalSuite extends FunSuite with ScalaCheckSuite{
       // This import could be at the top of the file but it put here to make it
       // clear that it's needed for 1 + r to work.
       import IntUtils.IntExtensions
-      //assert(r + 1 == 1 + r)
-      assert(false) // Replace with assert above when implemented.
+      assert(r + 1 == 1 + r)
+      //assert(false) // Replace with assert above when implemented.
     }
+  }
+
+  test("A new rational is normalised using the greatest common denominator")
+  {
+    val r = new Rational(14, 21)
+    assert(r.numer == 2)
+    assert(r.denom == 3)
+
+    val r1 = new Rational(24, 96)
+    assert(r1.numer == 1)
+    assert(r1.denom == 4)
   }
 
 }

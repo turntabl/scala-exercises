@@ -5,7 +5,7 @@ object MapFunctions {
     * Hint: Map contains a filter method just like list. Also consider destructuring the key and values with _1 and _2
     */
   def getElementsInMapStartingWith(m:Map[String, String], str: String):Map[String, String] = {
-    ???
+    m.filter(_._1.startsWith(str))
   }
 
   /**
@@ -14,7 +14,10 @@ object MapFunctions {
     * Hint 2: Take a look at reduce, which is very similar to fold
     */
   def getKeyOfLongest(m:Map[String, String]): Option[String] = {
-    ???
+    if (m.nonEmpty)
+      Some(m.reduce((x, y) => if (x._2.size > y._2.size) x else y)._1)
+    else
+      None
   }
 
   /**
@@ -23,7 +26,7 @@ object MapFunctions {
     * can work across all different maps and for any number of maps
     */
   def combineNMaps[A,B](ms:Map[A,B]*):Map[A,B] = {
-    ???
+    ms.flatten.toMap
   }
 
 }
