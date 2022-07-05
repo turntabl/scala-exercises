@@ -141,7 +141,8 @@ class Rational(n: Int, d:Int) extends Ordered[Rational]{
     */
   override def equals(that: Any): Boolean = {
     that match {
-      case t : Rational => t.compare(this) == 0
+      case t : Rational => this.compare(t) == 0
+      case t : Int => this.compare(new Rational(t)) == 0
       case _ => false
     }
   }

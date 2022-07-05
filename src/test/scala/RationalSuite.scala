@@ -72,6 +72,23 @@ class RationalSuite extends FunSuite with ScalaCheckSuite{
     }
   }
 
+  test("Comparing two rationals using > should work")
+  {
+     assert(new Rational(3, 4) > new Rational (1, 2))
+     assert( !(new Rational(3, 4) > new Rational (5, 4)))
+  }
+
+  test("Adding 2 rationals with large numerators/denominators works")
+  {
+     assertEquals(new Rational(8058, 8059) + new Rational(177, 856), new Rational(8058 * 856 + 177 * 8059, 8059 * 856))
+     assert(new Rational(8324091, 6898504) > new Rational(8058, 8059))
+  }
+
+  test("gcd works for large nums/denoms")
+  {
+     assertEquals(new Rational(8324091, 6898504).toString, "")
+  }
+
   test("Adding a negative rational to a positive always results in a value lower than the original") {
     forAll(positiveRational, negativeRational){ (r1, r2) =>
       assert(r1 + r2 < r1)
