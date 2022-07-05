@@ -38,7 +38,7 @@ object StringFunctions {
     * Hint: Watch out for the case where there are capital letters.
     */
   def convertToAlphabetical(str:String) = {
-    str.toLowerCase.sorted
+    str.sortBy(f => f.toLower)
   }
 
   /**
